@@ -24,8 +24,8 @@ jobs:
       - name: Run tests
         run: npm test
 
-      - name: Upload test coverage
+      - name: Upload test results
         uses: actions/upload-artifact@v2
         with:
-          name: coverage
-          path: coverage
+          name: test-results
+          path: test-results.xml
