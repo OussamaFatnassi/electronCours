@@ -2,26 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, init
-ial-scale=1.0">
-<title>Electron App</title>
-<style>
-body {
-font-family: Arial, sans-serif;
-margin: 0;
-padding: 20px;
-display: flex;
-justify-content: center;
-align-items: center;
-height: 100vh;
-background-color: #f4f4f4;
-}
-</style>
+<title>Division Calculator</title>
 </head>
 <body>
-<h1>Welcome to Your Electron App!</h1>
-<p>This is a basic Electron application using an HTML f
-ile.</p>
+<h1>Division Calculator</h1>
+<input type="number" id="numerator" placeholder="Enternumerator">
+<input type="number" id="denominator" placeholder="Enter denominator">
+<button onclick="performDivision()">Divide</button>
+<p id="result"></p>
+<script src="renderer.js"></script>
 </body>
 </html>
