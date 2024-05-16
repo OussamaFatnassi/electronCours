@@ -1,12 +1,13 @@
 module.exports = {
-  // Other configurations
+  preset: "ts-jest",
+  testEnvironment: "node",
   reporters: [
     "default",
     [
       "jest-junit",
       {
-        outputDirectory: "test-results", // Directory where the report will be saved
-        outputName: "test-results.xml", // Name of the test report file
+        outputDirectory: "test-results",
+        outputName: "test-results.xml",
       },
     ],
   ],
