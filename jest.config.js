@@ -1,14 +1,14 @@
 module.exports = {
   preset: "ts-jest",
   testEnvironment: "node",
-  reporters: [
-    "default",
-    [
-      "jest-junit",
-      {
-        outputDirectory: "test-results",
-        outputName: "test-results.xml",
-      },
-    ],
-  ],
+  testMatch: ["**/*.test.ts"],
+  collectCoverage: true,
+  collectCoverageFrom: ["src/**/*.ts"],
+  coverageDirectory: "coverage",
+  coverageReporters: ["text", "html"],
+  coveragePathIgnorePatterns: ["/node_modules/"],
+  moduleFileExtensions: ["ts", "js"],
+  transform: {
+    "^.+\\.ts$": "ts-jest",
+  },
 };
