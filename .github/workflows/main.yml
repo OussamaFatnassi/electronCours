@@ -20,16 +20,15 @@ jobs:
         with:
           name: test-results
           path: jest-junit.xml
-      - uses: actions/download-artifact@v4 # download test results
+          # coverage with sonarcloud
+  coverage-sonarcloud:
+    needs: build-test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v2 # download test results
         with:
           name: test-results
-          path: jest-junit.xml
-      - uses: actions/setup-node@v2 # setup node
-        with:
-          node-version: "20"
-      - run: npm install -g jest-sonar-reporter # install jest-sonar-reporter
-      - run: jest-sonar-reporter # generate coverage report
-      - uses: sonarsource/sonarcloud-github-action@master # run sonarcloud analysis
+      - uses: sonarsource/sonarcloud-github-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
@@ -37,3 +36,16 @@ jobs:
           args: >
             -Dsonar.organization=oussamafatnassi
             -Dsonar.projectKey=OussamaFatnassi_electronCours
+            -Dsonar.sources=.
+            -Dsonar.tests=.
+            -Dsonar.test.inclusions=**/*.spec.js
+            -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
+            -Dsonar.testExecutionReportPaths=jest-junit.xml
+            -Dsonar.coverage.exclusions=**/*.spec.js
+            -Dsonar.exclusions=**/*.spec.js
+            -Dsonar.javascript.exclusions=**/*.spec.js
+            -Dsonar.javascript.inclusions=**/*.js
+            -Dsonar.javascript.node.maxspace=4096
+            -Dsonar.javascript.node.maxOldSpaceSize=4096
+            -Dsonar.javascript.node.path=node_modules
+            -Dsonar.javascript.node.version=20
