@@ -27,7 +27,6 @@
 # or reach out to our community forum if you need some help (https://community.sonarsource.com/c/help/sc/9)
 
 name: SonarCloud analysis
-
 on:
   push:
     branches: [ "main" ]
@@ -40,6 +39,8 @@ permissions:
 
 jobs:
   Analysis:
+  
+    environment: workflow
     runs-on: ubuntu-latest
 
     steps:
